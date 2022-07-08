@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1894.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!doctype html&gt;</p>
+<p class="p1">&lt;html class="no-js" lang="{{ request.locale.iso_code }}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="utf-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="theme-color" content=""&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="canonical" href="{{ canonical_url }}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://cdn.shopify.com" crossorigin&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>{%- if settings.favicon != blank -%}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{%- endif -%}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>{%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{%- endunless -%}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{{ page_title }}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{%- if current_tags %} &amp;ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{%- if current_page != 1 %} &amp;ndash; Page {{ current_page }}{% endif -%}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{%- unless page_title contains shop.name %} &amp;ndash; {{ shop.name }}{% endunless -%}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/title&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>{% if page_description %}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;meta name="description" content="{{ page_description | escape }}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{% endif %}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>{% render 'meta-tags' %}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="{{ 'global.js' | asset_url }}" defer="defer"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{{ content_for_header }}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>{%- liquid</p>
+<p class="p1"><span class="Apple-converted-space">      </span>assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'</p>
+<p class="p1"><span class="Apple-converted-space">      </span>assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'</p>
+<p class="p1"><span class="Apple-converted-space">      </span>assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'</p>
+<p class="p1"><span class="Apple-converted-space">    </span>%}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>{% style %}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{{ settings.type_body_font | font_face: font_display: 'swap' }}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{{ body_font_bold | font_face: font_display: 'swap' }}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{{ body_font_italic | font_face: font_display: 'swap' }}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{{ body_font_bold_italic | font_face: font_display: 'swap' }}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{{ settings.type_header_font | font_face: font_display: 'swap' }}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>:root {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--font-body-style: {{ settings.type_body_font.style }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--font-body-weight: {{ settings.type_body_font.weight }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--font-body-weight-bold: {{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>--font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--font-heading-style: {{ settings.type_header_font.style }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--font-heading-weight: {{ settings.type_header_font.weight }};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>--font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>--color-base-text: {{ settings.colors_text.red }}, {{ settings.colors_text.green }}, {{ settings.colors_text.blue }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--color-shadow: {{ settings.colors_text.red }}, {{ settings.colors_text.green }}, {{ settings.colors_text.blue }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--color-base-background-1: {{ settings.colors_background_1.red }}, {{ settings.colors_background_1.green }}, {{ settings.colors_background_1.blue }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--color-base-background-2: {{ settings.colors_background_2.red }}, {{ settings.colors_background_2.green }}, {{ settings.colors_background_2.blue }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--color-base-solid-button-labels: {{ settings.colors_solid_button_labels.red }}, {{ settings.colors_solid_button_labels.green }}, {{ settings.colors_solid_button_labels.blue }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--color-base-outline-button-labels: {{ settings.colors_outline_button_labels.red }}, {{ settings.colors_outline_button_labels.green }}, {{ settings.colors_outline_button_labels.blue }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--color-base-accent-1: {{ settings.colors_accent_1.red }}, {{ settings.colors_accent_1.green }}, {{ settings.colors_accent_1.blue }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--color-base-accent-2: {{ settings.colors_accent_2.red }}, {{ settings.colors_accent_2.green }}, {{ settings.colors_accent_2.blue }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--payment-terms-background-color: {{ settings.colors_background_1 }};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>--gradient-base-background-1: {% if settings.gradient_background_1 != blank %}{{ settings.gradient_background_1 }}{% else %}{{ settings.colors_background_1 }}{% endif %};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--gradient-base-background-2: {% if settings.gradient_background_2 != blank %}{{ settings.gradient_background_2 }}{% else %}{{ settings.colors_background_2 }}{% endif %};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--gradient-base-accent-1: {% if settings.gradient_accent_1 != blank %}{{ settings.gradient_accent_1 }}{% else %}{{ settings.colors_accent_1 }}{% endif %};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--gradient-base-accent-2: {% if settings.gradient_accent_2 != blank %}{{ settings.gradient_accent_2 }}{% else %}{{ settings.colors_accent_2 }}{% endif %};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>--media-padding: {{ settings.media_padding }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--media-border-opacity: {{ settings.media_border_opacity | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--media-border-width: {{ settings.media_border_thickness }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--media-radius: {{ settings.media_radius }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--media-shadow-opacity: {{ settings.media_shadow_opacity | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--media-shadow-horizontal-offset: {{ settings.media_shadow_horizontal_offset }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--media-shadow-vertical-offset: {{ settings.media_shadow_vertical_offset }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--media-shadow-blur-radius: {{ settings.media_shadow_blur }}px;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>--page-width: {{ settings.page_width | divided_by: 10 }}rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--page-width-margin: {% if settings.page_width == '1600' %}2{% else %}0{% endif %}rem;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>--card-image-padding: {{ settings.card_image_padding | divided_by: 10.0 }}rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--card-corner-radius: {{ settings.card_corner_radius | divided_by: 10.0 }}rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--card-text-alignment: {{ settings.card_text_alignment }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--card-border-width: {{ settings.card_border_thickness | divided_by: 10.0 }}rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--card-border-opacity: {{ settings.card_border_opacity | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--card-shadow-opacity: {{ settings.card_shadow_opacity | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--card-shadow-horizontal-offset: {{ settings.card_shadow_horizontal_offset | divided_by: 10.0 }}rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--card-shadow-vertical-offset: {{ settings.card_shadow_vertical_offset | divided_by: 10.0 }}rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--card-shadow-blur-radius: {{ settings.card_shadow_blur | divided_by: 10.0 }}rem;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>--badge-corner-radius: {{ settings.badge_corner_radius | divided_by: 10.0 }}rem;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>--popup-border-width: {{ settings.popup_border_thickness }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--popup-border-opacity: {{ settings.popup_border_opacity | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--popup-corner-radius: {{ settings.popup_corner_radius }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--popup-shadow-opacity: {{ settings.popup_shadow_opacity | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--popup-shadow-horizontal-offset: {{ settings.popup_shadow_horizontal_offset }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--popup-shadow-vertical-offset: {{ settings.popup_shadow_vertical_offset }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--popup-shadow-blur-radius: {{ settings.popup_shadow_blur }}px;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>--drawer-border-width: {{ settings.drawer_border_thickness }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--drawer-border-opacity: {{ settings.drawer_border_opacity | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--drawer-shadow-opacity: {{ settings.drawer_shadow_opacity | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--drawer-shadow-horizontal-offset: {{ settings.drawer_shadow_horizontal_offset }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--drawer-shadow-vertical-offset: {{ settings.drawer_shadow_vertical_offset }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--drawer-shadow-blur-radius: {{ settings.drawer_shadow_blur }}px;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>--spacing-sections-desktop: {{ settings.spacing_sections }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--spacing-sections-mobile: {% if settings.spacing_sections &lt; 24 %}{{ settings.spacing_sections }}{% else %}{{ settings.spacing_sections | times: 0.7 | round | at_least: 20 }}{% endif %}px;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>--grid-desktop-vertical-spacing: {{ settings.spacing_grid_vertical }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--grid-desktop-horizontal-spacing: {{ settings.spacing_grid_horizontal }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--grid-mobile-vertical-spacing: {{ settings.spacing_grid_vertical | divided_by: 2 }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--grid-mobile-horizontal-spacing: {{ settings.spacing_grid_horizontal | divided_by: 2 }}px;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>--text-boxes-border-opacity: {{ settings.text_boxes_border_opacity | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--text-boxes-border-width: {{ settings.text_boxes_border_thickness }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--text-boxes-radius: {{ settings.text_boxes_radius }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--text-boxes-shadow-opacity: {{ settings.text_boxes_shadow_opacity | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--text-boxes-shadow-horizontal-offset: {{ settings.text_boxes_shadow_horizontal_offset }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--text-boxes-shadow-vertical-offset: {{ settings.text_boxes_shadow_vertical_offset }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--text-boxes-shadow-blur-radius: {{ settings.text_boxes_shadow_blur }}px;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>--buttons-radius: {{ settings.buttons_radius }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--buttons-radius-outset: {% if settings.buttons_radius &gt; 0 %}{{ settings.buttons_radius | plus: settings.buttons_border_thickness }}{% else %}0{% endif %}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--buttons-border-width: {% if settings.buttons_border_opacity &gt; 0 %}{{ settings.buttons_border_thickness }}{% else %}0{% endif %}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--buttons-border-opacity: {{ settings.buttons_border_opacity | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--buttons-shadow-opacity: {{ settings.buttons_shadow_opacity | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--buttons-shadow-horizontal-offset: {{ settings.buttons_shadow_horizontal_offset }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--buttons-shadow-vertical-offset: {{ settings.buttons_shadow_vertical_offset }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--buttons-shadow-blur-radius: {{ settings.buttons_shadow_blur }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--buttons-border-offset: {% if settings.buttons_radius &gt; 0 or settings.buttons_shadow_opacity &gt; 0 %}0.3{% else %}0{% endif %}px;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>--inputs-radius: {{ settings.inputs_radius }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--inputs-border-width: {{ settings.inputs_border_thickness }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--inputs-border-opacity: {{ settings.inputs_border_opacity | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--inputs-shadow-opacity: {{ settings.inputs_shadow_opacity | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--inputs-shadow-horizontal-offset: {{ settings.inputs_shadow_horizontal_offset }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--inputs-margin-offset: {% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_opacity &gt; 0 %}{{ settings.inputs_shadow_vertical_offset | abs }}{% else %}0{% endif %}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--inputs-shadow-vertical-offset: {{ settings.inputs_shadow_vertical_offset }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--inputs-shadow-blur-radius: {{ settings.inputs_shadow_blur }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--inputs-radius-outset: {% if settings.inputs_radius &gt; 0 %}{{ settings.inputs_radius | plus: settings.inputs_border_thickness }}{% else %}0{% endif %}px;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>--variant-pills-radius: {{ settings.variant_pills_radius }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--variant-pills-border-width: {{ settings.variant_pills_border_thickness }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--variant-pills-border-opacity: {{ settings.variant_pills_border_opacity | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--variant-pills-shadow-opacity: {{ settings.variant_pills_shadow_opacity | divided_by: 100.0 }};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--variant-pills-shadow-horizontal-offset: {{ settings.variant_pills_shadow_horizontal_offset }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--variant-pills-shadow-vertical-offset: {{ settings.variant_pills_shadow_vertical_offset }}px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>--variant-pills-shadow-blur-radius: {{ settings.variant_pills_shadow_blur }}px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>*,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>*::before,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>*::after {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>box-sizing: inherit;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>html {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>box-sizing: border-box;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>font-size: calc(var(--font-body-scale) * 62.5%);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>grid-template-rows: auto auto 1fr auto;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>grid-template-columns: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>min-height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>font-size: 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>letter-spacing: 0.06rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>line-height: calc(1 + 0.8 / var(--font-body-scale));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>font-family: var(--font-body-family);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>font-style: var(--font-body-style);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>font-weight: var(--font-body-weight);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>@media screen and (min-width: 750px) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>font-size: 1.6rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{% endstyle %}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>{{ 'base.css' | asset_url | stylesheet_tag }}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>{%- unless settings.type_body_font.system? -%}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{%- endunless -%}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{%- unless settings.type_header_font.system? -%}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{%- endunless -%}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>{%- if settings.predictive_search_enabled -%}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;link rel="stylesheet" href="{{ 'component-predictive-search.css' | asset_url }}" media="print" onload="this.media='all'"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{%- endif -%}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (Shopify.designMode) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.documentElement.classList.add('shopify-design-mode');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;var scaaffCheck = false;&lt;/script&gt;</p>
+<p class="p1">{{ 'sca_affiliate.js' | asset_url | script_tag }}</p>
+<p class="p2"><br></p>
+<p class="p1">{% render 'sca-aff-refer-customer' %}</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;body class="gradient"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;a class="skip-to-content-link button visually-hidden" href="#MainContent"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{{ "accessibility.skip_to_text" | t }}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/a&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>{% section 'announcement-bar' %}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{% section 'header' %}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{{ content_for_layout }}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>{% section 'footer' %}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;ul hidden&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;li id="a11y-refresh-page-message"&gt;{{ 'accessibility.refresh_page' | t }}&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/ul&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>window.shopUrl = '{{ request.origin }}';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>window.routes = {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cart_add_url: '{{ routes.cart_add_url }}',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cart_change_url: '{{ routes.cart_change_url }}',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cart_update_url: '{{ routes.cart_update_url }}',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>predictive_search_url: '{{ routes.predictive_search_url }}'</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>window.cartStrings = {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>error: `{{ 'sections.cart.cart_error' | t }}`,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>window.variantStrings = {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>addToCart: `{{ 'products.product.add_to_cart' | t }}`,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>soldOut: `{{ 'products.product.sold_out' | t }}`,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>unavailable: `{{ 'products.product.unavailable' | t }}`,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>window.accessibilityStrings = {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>imageAvailable: `{{ 'products.product.media.image_available' | t: index: '[index]' }}`,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>shareSuccess: `{{ 'general.share.success_message' | t }}`,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>pauseSlideshow: `{{ 'sections.slideshow.pause_slideshow' | t }}`,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>playSlideshow: `{{ 'sections.slideshow.play_slideshow' | t }}`,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>{%- if settings.predictive_search_enabled -%}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{%- endif -%}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- PF EDT START --&gt;</p>
+<p class="p1">&lt;script type='text/javascript'&gt;</p>
+<p class="p1">{%- if content_for_header contains 'shopify-product-customizer' -%}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{%- if product -%}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{%- if product.first_available_variant -%}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var pfProductId = {{ product.metafields.printful.is_synced | json }};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var pfEdt = {{ shop.metafields.printful.is_edt_enabled | json }};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var pfEdtTextColor = {{ shop.metafields.printful.edt_text_color | json }};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var pfEdtBackgroundColor = {{ shop.metafields.printful.edt_background_color | json }};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var pfEdtBorderColor = {{ shop.metafields.printful.edt_border_color | json }}; <span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>var pfEdtUseDefaultStyling = {{ shop.metafields.printful.edt_default_style | json }};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var pfEdtTextAlignment = {{ shop.metafields.printful.edt_text_alignment | json }};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var pfEdtFlags = {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>US: "{{ 'US.svg' | asset_url }}",CA: "{{ 'CA.svg' | asset_url }}",ES: "{{ 'ES.svg' | asset_url }}",LV: "{{ 'LV.svg' | asset_url }}",GB: "{{ 'GB.svg' | asset_url }}",DE: "{{ 'DE.svg' | asset_url }}",FR: "{{ 'FR.svg' | asset_url }}",AU: "{{ 'AU.svg' | asset_url }}",JP: "{{ 'JP.svg' | asset_url }}",NZ: "{{ 'NZ.svg' | asset_url }}",IT: "{{ 'IT.svg' | asset_url }}",BR: "{{ 'BR.svg' | asset_url }}",KR: "{{ 'KR.svg' | asset_url }}",NL: "{{ 'NL.svg' | asset_url }}",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{%- else -%}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>var pfEdt = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{%- endif -%}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{%- endif -%}</p>
+<p class="p1">{%- endif -%}</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;!-- PF EDT END --&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
